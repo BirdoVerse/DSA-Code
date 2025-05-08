@@ -29,7 +29,6 @@ A **Python-based FIFO inventory system** for seafood processors to minimize wast
 ## 💻 Installation
 ### Prerequisites
 - Python 3.8+
-- pip package manager
 
 ### Steps
 ```bash
