@@ -12,8 +12,6 @@ A **Python-based FIFO inventory system** for seafood processors to minimize wast
 - [Key Features](#-key-features)
 - [Installation](#-installation)
 - [Usage](#-usage)
-- [System Architecture](#-system-architecture)
-- [Contributing](#-contributing)
 - [License](#-license)
 
 ---
