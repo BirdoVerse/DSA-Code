@@ -1,0 +1,96 @@
+START PROGRAM
+
+FUNCTION CreateItem(id, name, qty, receivedDate, expiryDate):
+    RETURN a dictionary representing the seafood item
+
+FUNCTION UpdateItemQuantity(inventory, id, newQty):
+    FOR each item IN inventory:
+        IF item ID matches:
+            Update its quantity
+            RETURN success
+    RETURN failure
+
+FUNCTION RemoveExpiredItems(inventory, today):
+    WHILE first item in inventory is expired:
+        Remove it and collect in removed list
+    RETURN removed items
+
+FUNCTION FindById(inventory, id):
+    FOR each item IN inventory:
+        IF item ID matches:
+            RETURN item
+    RETURN None
+
+FUNCTION SearchItems(inventory, name):
+    RETURN list of items matching the name (case-insensitive)
+
+FUNCTION CheckAlerts(inventory, today):
+    RETURN list of items with quantity < 5 or expired
+
+FUNCTION SortInventory(inventory, key):
+    Sort inventory list based on the given key
+    RETURN sorted list
+
+FUNCTION AskDate(prompt):
+    LOOP until a valid date (YYYY-MM-DD) is entered:
+        RETURN parsed date
+
+FUNCTION GetInt(prompt):
+    LOOP until a valid non-negative integer is entered:
+        RETURN number
+
+FUNCTION PrintItem(item, today):
+    Determine if item is FRESH or EXPIRED
+    Display item info and status
+
+MAIN FUNCTION:
+    Initialize empty inventory
+    Set current date from user input
+
+    LOOP:
+        Show menu options (0–9)
+        Get user's choice
+
+        CASE "0":
+            Update current date
+
+        CASE "1":
+            Get new item info from user
+            Validate name (uppercase letters only)
+            Create and append item to inventory
+
+        CASE "2":
+            IF inventory is empty:
+                Show message
+            ELSE:
+                Print all items with status
+
+        CASE "3":
+            Get ID and new quantity
+            Try updating item quantity
+
+        CASE "4":
+            Remove expired items and display removed ones
+
+        CASE "5":
+            Get name to search
+            Display matching items
+
+        CASE "6":
+            Show all alerts for low stock or expired items
+
+        CASE "7":
+            Get sort field (name, qty, date_received)
+            Sort inventory accordingly
+
+        CASE "8":
+            Get item ID and display its details
+
+        CASE "9":
+            Exit the loop and program
+
+        DEFAULT:
+            Show invalid option message
+
+CALL MAIN
+END PROGRAM
