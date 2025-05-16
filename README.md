@@ -2,7 +2,7 @@
 
 ![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Development-yellow)
+![Status](https://img.shields.io/badge/Status-Finished-green)
 
 A **Python-based FIFO inventory system** for seafood processors to minimize waste by prioritizing freshness through catch-time tracking.
 
