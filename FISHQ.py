@@ -182,13 +182,18 @@ def main():
                 print("No alerts.")
 
         elif choice == "7":
+            if not inventory:
+                print("Inventory is empty. Nothing to sort.")
+                continue
+
             print("Sort by: name | qty | date_received")
-            field = input("Field: ").strip()
+            field = input("Field: ").strip().lower()
+
             if field in ["name", "qty", "date_received"]:
-                inventory[:] = sort_inventory(inventory, field)
-                print("Inventory sorted by", field + ".")
+                sort_inventory(inventory, field)
+                print(f"Inventory sorted by {field}.")
             else:
-                print("Invalid field.")
+                print("Invalid field. Try again.")
 
         elif choice == "8":
             id = input("Enter ID: ")
