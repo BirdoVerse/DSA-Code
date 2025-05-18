@@ -22,11 +22,15 @@ def update_item_quantity(inventory, id, new_qty):
             return True
     return False
 
-# Remove expired items from the start
+# Remove all expired items from inventory
 def remove_expired_items(inventory, today):
     removed = []
-    while inventory and inventory[0]["expiry_date"] < today:
-        removed.append(inventory.pop(0))
+    i = 0
+    while i < len(inventory):
+        if inventory[i]["expiry_date"] < today:
+            removed.append(inventory.pop(i))
+        else:
+            i += 1
     return removed
 
 # Get item by ID
@@ -133,8 +137,9 @@ def main():
         elif choice == "2":
             if not inventory:
                 print("Inventory is empty.")
-            for item in inventory:
-                print_item(item, today)
+            else:
+                for item in inventory:
+                    print_item(item, today)
 
         elif choice == "3":
             id = input("Enter ID to update: ")
@@ -148,9 +153,9 @@ def main():
             removed = remove_expired_items(inventory, today)
             if removed:
                 for item in removed:
-                    print(f"Removed: {item['name']}")
+                    print(f"Removed expired: {item['name']} (Expired on: {item['expiry_date'].date()})")
             else:
-                print("No expired items.")
+                print("No expired items to remove.")
 
         elif choice == "5":
             name = input("Search name: ")
@@ -164,8 +169,15 @@ def main():
         elif choice == "6":
             alerts = check_alerts(inventory, today)
             if alerts:
+                print("ALERTS:")
                 for item in alerts:
-                    print(f"Alert: {item['name']} - Qty: {item['qty']} - Expiry: {item['expiry_date'].date()}")
+                    reasons = []
+                    if item["qty"] < 5:
+                        reasons.append("Low Quantity")
+                    if item["expiry_date"] < today:
+                        reasons.append(f"Expired on {item['expiry_date'].date()}")
+                    reason_str = " | ".join(reasons)
+                    print(f"{item['name']} - Qty: {item['qty']} - {reason_str}")
             else:
                 print("No alerts.")
 
@@ -174,7 +186,7 @@ def main():
             field = input("Field: ").strip()
             if field in ["name", "qty", "date_received"]:
                 inventory[:] = sort_inventory(inventory, field)
-                print("Sorted.")
+                print("Inventory sorted by", field + ".")
             else:
                 print("Invalid field.")
 
